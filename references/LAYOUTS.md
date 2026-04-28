@@ -4,7 +4,7 @@ This document provides a comprehensive list of slide layouts available in the Go
 
 ## Title and Agenda Layouts
 
-- **Cover / Title**: Large bold headline left, date below, Google Cloud logo bottom-left, "C" arc decoration right.
+- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/google_cloud_icon.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute.
 - **Contents (horizontal)**: "Contents" heading, numbered items with blue numbers right-aligned.
 - **Contents (vertical)**: "Contents" heading, numbered list left-aligned.
 - **Agenda (3-col grid)**: Rainbow bar, 3-column grid: time + title + description.
@@ -58,4 +58,4 @@ This document provides a comprehensive list of slide layouts available in the Go
 
 - **US Map**: Title top-left, US map graphic center-right.
 - **World Map**: Full-slide world map with blue dot markers.
-- **Thank You**: "Thank you" left, large "C" arc decoration right, Google Cloud logo bottom-left.
+- **Thank You**: "Thank you" left, official Google Cloud icon (`templates/google_cloud_icon.png`) large on the right side (400×400 px, `object-fit: contain`), Google Cloud wordmark logo bottom-left. Do NOT use CSS arcs as a substitute.

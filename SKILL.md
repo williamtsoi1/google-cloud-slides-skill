@@ -32,7 +32,7 @@ When creating slides using this skill, always adhere to the following brand guid
 ### Key Decorative Elements
 
 1. **Rainbow divider bar**: A thin horizontal line graduating Red → Blue → Green → Yellow. Used as a section separator, sometimes partial-width (left-aligned or right-aligned).
-2. **Google Cloud "C" arc**: Large overlapping arcs (Red, Blue, Yellow) forming the Google Cloud logo "C" shape. Used on cover and thank-you slides.
+2. **Google Cloud icon**: The official Google Cloud icon (multicolour cloud logo). Use the bundled asset at `templates/google_cloud_icon.png` — always reference it via its absolute path `/home/ubuntu/skills/google-cloud-slides/templates/google_cloud_icon.png`. Place it prominently on the right side of cover and thank-you slides. Do NOT recreate this with CSS arcs.
 3. **Colored section backgrounds**: Full-bleed solid backgrounds in Google Green (`#34A853`), Google Blue (`#4285F4`), or Google Red (`#EA4335`) for section dividers.
 
 ## Slide Layouts
@@ -43,7 +43,7 @@ For detailed descriptions of all available layouts, see [LAYOUTS.md](references/
 
 ### Common Layouts
 
-- **Cover / Title**: Large bold headline left, date below, Google Cloud logo bottom-left, "C" arc decoration right.
+- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/google_cloud_icon.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute.
 - **Section divider**: Rainbow bar top, large section number (zero-padded, e.g., "01") + title.
 - **Title + body (1-col)**: Slide title top-left, body text below.
 - **2-column text**: Slide title, two equal text columns.
