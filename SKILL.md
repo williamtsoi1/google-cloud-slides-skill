@@ -32,7 +32,7 @@ When creating slides using this skill, always adhere to the following brand guid
 ### Key Decorative Elements
 
 1. **Rainbow divider bar**: A thin horizontal line graduating Red → Yellow → Green → Blue. Used as a section separator, sometimes partial-width (left-aligned or right-aligned). Use the bundled asset at `templates/GC_Progress_Bar_Gradient_RGB.jpg` as an `<img>` element. Do NOT recreate this bar using CSS gradients.
-2. **Google Cloud icon**: The official Google Cloud icon (multicolour cloud logo). Use the bundled asset at `templates/gradient_super_cloud_512_2x.png` — always reference it via its absolute path `/home/ubuntu/skills/google-cloud-slides/templates/gradient_super_cloud_512_2x.png`. Place it prominently on the right side of cover and thank-you slides. Do NOT recreate this with CSS arcs.
+2. **Google Cloud icon**: The official Google Cloud icon (multicolour cloud logo). Use the bundled asset at `templates/gradient_super_cloud_512_2x.png` — always find the absolute path of the image and reference it this way. Place it prominently on the right side of cover and thank-you slides. Do NOT recreate this with CSS arcs.
 3. **Colored section backgrounds**: Full-bleed solid backgrounds in Google Green (`#00AF57`), Google Blue (`#3186FF`), or Google Red (`#FC413D`) for section dividers.
 
 ## Slide Layouts
