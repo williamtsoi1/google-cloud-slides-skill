@@ -7,10 +7,10 @@ Use these CSS snippets when generating slides in `html` mode to match the Google
 ```css
 /* Base Font and Colors */
 :root {
-  --gc-blue: #4285F4;
-  --gc-red: #EA4335;
-  --gc-yellow: #FBBC04;
-  --gc-green: #34A853;
+  --gc-blue: #3186FF;
+  --gc-red: #FC413D;
+  --gc-yellow: #FEC700;
+  --gc-green: #00AF57;
   --gc-dark: #202124;
   --gc-light: #FFFFFF;
   --gc-light-blue: #E8F0FE;
@@ -32,12 +32,16 @@ body {
 ## Decorative Elements
 
 ```css
-/* Rainbow Divider Bar */
+/* Rainbow Divider Bar — use the bundled image asset, do NOT recreate with CSS gradients */
 .rainbow-bar {
-  height: 4px;
   width: 100%;
-  background: linear-gradient(to right, var(--gc-red), var(--gc-blue), var(--gc-green), var(--gc-yellow));
   margin-bottom: 20px;
+}
+.rainbow-bar img {
+  width: 100%;
+  height: 4px;
+  object-fit: fill;
+  display: block;
 }
 
 /* Footer */

@@ -24,16 +24,16 @@ When creating slides using this skill, always adhere to the following brand guid
 | Background (dark) | `#202124` | Dark-mode slides |
 | Text (light bg) | `#202124` | Body and headings |
 | Text (dark bg) | `#FFFFFF` | Body and headings on dark backgrounds |
-| Google Blue | `#4285F4` | Accent, section dividers, chart fills, highlighted text |
-| Google Red | `#EA4335` | Accent, section dividers |
-| Google Yellow/Gold | `#FBBC04` | Accent, section dividers |
-| Google Green | `#34A853` | Accent, section dividers |
+| Google Blue | `#3186FF` | Accent, section dividers, chart fills, highlighted text |
+| Google Red | `#FC413D` | Accent, section dividers |
+| Google Yellow/Gold | `#FEC700` | Accent, section dividers |
+| Google Green | `#00AF57` | Accent, section dividers |
 
 ### Key Decorative Elements
 
-1. **Rainbow divider bar**: A thin horizontal line graduating Red → Blue → Green → Yellow. Used as a section separator, sometimes partial-width (left-aligned or right-aligned).
-2. **Google Cloud icon**: The official Google Cloud icon (multicolour cloud logo). Use the bundled asset at `templates/google_cloud_icon.png` — always reference it via its absolute path `/home/ubuntu/skills/google-cloud-slides/templates/google_cloud_icon.png`. Place it prominently on the right side of cover and thank-you slides. Do NOT recreate this with CSS arcs.
-3. **Colored section backgrounds**: Full-bleed solid backgrounds in Google Green (`#34A853`), Google Blue (`#4285F4`), or Google Red (`#EA4335`) for section dividers.
+1. **Rainbow divider bar**: A thin horizontal line graduating Red → Yellow → Green → Blue. Used as a section separator, sometimes partial-width (left-aligned or right-aligned). Use the bundled asset at `templates/GC_Progress_Bar_Gradient_RGB.jpg` as an `<img>` element. Do NOT recreate this bar using CSS gradients.
+2. **Google Cloud icon**: The official Google Cloud icon (multicolour cloud logo). Use the bundled asset at `templates/gradient_super_cloud_512_2x.png` — always reference it via its absolute path `/home/ubuntu/skills/google-cloud-slides/templates/gradient_super_cloud_512_2x.png`. Place it prominently on the right side of cover and thank-you slides. Do NOT recreate this with CSS arcs.
+3. **Colored section backgrounds**: Full-bleed solid backgrounds in Google Green (`#00AF57`), Google Blue (`#3186FF`), or Google Red (`#FC413D`) for section dividers.
 
 ## Slide Layouts
 
@@ -43,7 +43,7 @@ For detailed descriptions of all available layouts, see [LAYOUTS.md](references/
 
 ### Common Layouts
 
-- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/google_cloud_icon.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute.
+- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/gradient_super_cloud_512_2x.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute.
 - **Section divider**: Rainbow bar top, large section number (zero-padded, e.g., "01") + title.
 - **Title + body (1-col)**: Slide title top-left, body text below.
 - **2-column text**: Slide title, two equal text columns.
