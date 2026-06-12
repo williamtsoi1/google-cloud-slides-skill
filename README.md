@@ -50,6 +50,26 @@ ln -s /path/to/google-cloud-slides-skill ~/.gemini/extensions/google-cloud-slide
 The extension directory name must match the `name` field in `gemini-extension.json`
 (`google-cloud-slides`).
 
+## Install — Antigravity CLI
+
+Antigravity CLI consumes this as a **plugin** (its term for Gemini extensions). Install it
+directly from GitHub:
+
+```
+agy plugin install https://github.com/williamtsoi1/google-cloud-slides-skill
+```
+
+If you already have it installed as a Gemini CLI extension, migrate it instead of
+reinstalling. Antigravity offers to convert detected Gemini extensions on first launch, or
+you can run the import manually:
+
+```
+agy plugin import gemini
+```
+
+Migration is non-destructive — your original Gemini files are left intact, and the converted
+plugin lands under `~/.gemini/antigravity-cli/plugins/`.
+
 ## Usage
 
 Once installed, ask your agent to build a Google Cloud–styled deck (e.g. "make a Google
