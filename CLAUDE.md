@@ -4,22 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Is
 
-This is a **Claude Code skill** (not a runnable application) that teaches Claude how to generate Google Cloud-branded slide decks. It contains no executable code — only markdown instructions, CSS references, and image assets. The skill is invoked via the `slides` tool in `html` mode.
+This is a **skill that ships as both a Claude Code plugin and a Gemini CLI extension** (not a runnable application). It teaches the agent how to generate Google Cloud-branded slide decks. It contains no executable code — only markdown instructions, CSS references, and image assets. The skill is invoked via the `slides` tool in `html` mode.
+
+Both platforms discover the same `skills/<name>/SKILL.md` convention, so a single shared `skills/` directory serves both. Each platform has its own manifest at a fixed location.
 
 ## Repo Structure
 
-- `SKILL.md` — The skill definition file (frontmatter + instructions). This is the entry point that Claude loads when the skill is activated.
-- `references/LAYOUTS.md` — Catalog of all available slide layout types (cover, section dividers, content, charts, statements, images, maps, closing).
-- `references/CSS_SNIPPETS.md` — CSS variable definitions and class patterns for implementing the Google Cloud 2025 visual style in HTML.
-- `templates/` — Brand assets: `gradient_super_cloud_512_2x.png` (multicolour cloud logo), `GC_Progress_Bar_Gradient_RGB.jpg` (rainbow divider bar).
+- `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, description, version, author, repository).
+- `.claude-plugin/marketplace.json` — One-plugin marketplace so the repo is directly installable via `/plugin marketplace add`.
+- `gemini-extension.json` — Gemini CLI extension manifest (name must match the install directory).
+- `skills/google-cloud-slides/SKILL.md` — The skill definition file (frontmatter + instructions). This is the entry point the agent loads when the skill is activated.
+- `skills/google-cloud-slides/references/LAYOUTS.md` — Catalog of all available slide layout types (cover, section dividers, content, charts, statements, images, maps, closing).
+- `skills/google-cloud-slides/references/CSS_SNIPPETS.md` — CSS variable definitions and class patterns for implementing the Google Cloud 2025 visual style in HTML.
+- `skills/google-cloud-slides/templates/` — Brand assets: `gradient_super_cloud_512_2x.png` (multicolour cloud logo), `GC_Progress_Bar_Gradient_RGB.jpg` (rainbow divider bar). Referenced relatively from `SKILL.md`, so they move with the skill.
 - `scripts/` — Currently empty; reserved for future tooling.
+- `README.md` — Install instructions for both Claude Code and Gemini CLI.
 
 ## Key Brand Rules
 
 When editing or extending this skill, maintain these constraints:
 
-- The Google Cloud icon must always be referenced from `templates/gradient_super_cloud_512_2x.png` — never recreated with CSS arcs.
-- The rainbow divider bar must always use the image asset at `templates/GC_Progress_Bar_Gradient_RGB.jpg` — never recreated with CSS gradients.
+- The Google Cloud icon must always be referenced from `skills/google-cloud-slides/templates/gradient_super_cloud_512_2x.png` (relative path `templates/gradient_super_cloud_512_2x.png` from `SKILL.md`) — never recreated with CSS arcs.
+- The rainbow divider bar must always use the image asset at `skills/google-cloud-slides/templates/GC_Progress_Bar_Gradient_RGB.jpg` (relative path `templates/GC_Progress_Bar_Gradient_RGB.jpg` from `SKILL.md`) — never recreated with CSS gradients.
 - Every slide must have a footer: "Google Cloud" bottom-left, "Proprietary & Confidential [page#]" bottom-right.
 - Section numbers are always zero-padded two digits (01, 02, 03).
 - Bullet slides: max 6-8 items, no trailing punctuation.

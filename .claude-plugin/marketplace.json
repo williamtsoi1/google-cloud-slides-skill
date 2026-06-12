@@ -1,0 +1,14 @@
+{
+  "name": "google-cloud-slides",
+  "description": "Google Cloud-branded slide deck generation skill for Claude Code.",
+  "owner": {
+    "name": "William Tsoi"
+  },
+  "plugins": [
+    {
+      "name": "google-cloud-slides",
+      "source": "./",
+      "description": "Create slide decks with the visual style of the Google Cloud 2025 presentation template. Use for: generating professional, branded presentations with specific Google Cloud layouts, colors, and typography."
+    }
+  ]
+}
