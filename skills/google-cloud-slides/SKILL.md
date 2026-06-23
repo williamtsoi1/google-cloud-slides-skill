@@ -12,6 +12,7 @@ This skill provides instructions and assets for creating slide decks that match 
 When creating slides using this skill, always adhere to the following brand guidelines:
 
 - **Brand name**: Google Cloud
+- **Slide frame**: Every slide — including the cover and thank-you slides — must use the fixed-size `.slide` container (1280×720, 16:9) from CSS_SNIPPETS.md. The fixed `height` (not `min-height`) plus `overflow: hidden` is what forces the aspect ratio; never let a slide size itself to its content, or slides with the large logo will render off-ratio in both HTML and PDF.
 - **Footer**: Every slide must include "Google Cloud" in the bottom-left corner and "Proprietary & Confidential  [page#]" in the bottom-right corner.
 - **Font**: Use Google Sans (or a clean, rounded, modern sans-serif fallback like Product Sans).
 - **Primary text color**: Near-black (`#202124`).
@@ -43,7 +44,7 @@ For detailed descriptions of all available layouts, see [LAYOUTS.md](references/
 
 ### Common Layouts
 
-- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/gradient_super_cloud_512_2x.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute.
+- **Cover / Title**: Large bold headline left, date below, Google Cloud wordmark logo top-left, official Google Cloud icon (`templates/gradient_super_cloud_512_2x.png`) large on the right side (400×400 px, `object-fit: contain`). Do NOT use CSS arcs as a substitute. Wrap the slide in the standard fixed-size `.slide` frame (see CSS_SNIPPETS.md) and give the logo the `.logo` class — the slide's fixed `height` is what keeps it 16:9; without it the large logo makes the slide grow off-ratio.
 - **Section divider**: Rainbow bar top, large section number (zero-padded, e.g., "01") + title.
 - **Title + body (1-col)**: Slide title top-left, body text below.
 - **2-column text**: Slide title, two equal text columns.

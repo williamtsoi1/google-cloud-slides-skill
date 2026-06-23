@@ -22,6 +22,33 @@ body {
   background-color: var(--gc-light);
 }
 
+/* Slide frame — EVERY slide is this fixed 16:9 box, in BOTH the HTML preview
+   and the PDF export. The fixed `height` (not `min-height`) is what forces the
+   aspect ratio. Without it, a slide sizes itself to its content, so slides with
+   a large logo (the cover and the thank-you slide) grow to fit the 400px image
+   and render off-ratio (e.g. 1280x640 = 2:1 instead of 16:9). `overflow:hidden`
+   clips any accidental overflow instead of letting the slide expand. Apply this
+   class to every slide regardless of mode. */
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Cover / Thank-you logo — large but bounded so it can never push the slide
+   past its fixed height. */
+.cover .logo,
+.closing .logo {
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 /* Dark Mode */
 .dark-slide {
   background-color: var(--gc-dark);
@@ -105,23 +132,19 @@ ul.gc-bullets li {
 
 ## Print / PDF export
 
-When the deck will be converted to PDF in a CLI environment (see the "Exporting to PDF" section of `SKILL.md`), build it as a **single self-contained HTML file** where every slide is a `.slide` section, and include the rules below. They make Chrome/Playwright render exactly **one slide per PDF page** at 16:9, with brand backgrounds preserved.
+When the deck will be converted to PDF in a CLI environment (see the "Exporting to PDF" section of `SKILL.md`), build it as a **single self-contained HTML file** where every slide is a `.slide` section. The `.slide` rule in **Base Styling** already pins each slide to a fixed 1280x720 (16:9) box — that fixed height is what forces the aspect ratio on the cover and thank-you slides too. Add the page rules below on top of it so Chrome/Playwright render exactly **one slide per PDF page**, with brand backgrounds preserved.
 
 ```css
-/* 16:9 page at 96dpi. The PDF page size comes from this rule, not from the
-   converter — keep it in sync with the .slide dimensions below. */
+/* 16:9 page at 96dpi. The PDF page size comes from this rule; keep it in sync
+   with the fixed .slide dimensions in Base Styling (1280x720). */
 @page {
   size: 1280px 720px;
   margin: 0;
 }
 
-/* Each slide fills one page and forces a page break after it. */
+/* Each slide fills one page and forces a page break after it. (Dimensions and
+   overflow come from the .slide rule in Base Styling.) */
 .slide {
-  position: relative;
-  width: 1280px;
-  height: 720px;
-  overflow: hidden;
-  box-sizing: border-box;
   page-break-after: always;
   break-after: page;
 }
