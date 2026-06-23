@@ -74,7 +74,7 @@ For reference on how to implement the visual style in HTML/CSS, see [CSS_SNIPPET
 
 On Manus, the platform converts the generated deck to Google Slides / PDF / PPTX for you. When this skill runs from a **CLI agent** (Claude Code, Antigravity CLI, Gemini CLI) there is no built-in export — you must produce the PDF yourself using the bundled converter.
 
-1. **Author the deck as a single self-contained HTML file.** Put every slide in its own `.slide` section within one `.html` file, and include the **Print / PDF export** CSS from [CSS_SNIPPETS.md](references/CSS_SNIPPETS.md) (the `@page` size, the `.slide` page-break rules, and `print-color-adjust: exact`). This is what makes each slide map to exactly one PDF page with brand backgrounds intact.
+1. **Author the deck as a single self-contained HTML file.** Put every slide in its own `.slide` section within one `.html` file, and include the **Print / PDF export** CSS from [CSS_SNIPPETS.md](references/CSS_SNIPPETS.md) (the `@page` size, the `.slide` page-break rules, and `print-color-adjust: exact`). This is what makes each slide map to exactly one PDF page with brand backgrounds intact. **Do not put margins, gaps, borders, or shadows on `.slide`** — they add to the printed box and spill each slide onto a second page. Scope any on-screen layout under `@media screen` and zero it under `@media print` (see CSS_SNIPPETS.md).
 
 2. **Use absolute paths for the brand assets** (`templates/gradient_super_cloud_512_2x.png`, `templates/GC_Progress_Bar_Gradient_RGB.jpg`) so they load during printing, as noted in CSS_SNIPPETS.md.
 
@@ -90,4 +90,13 @@ On Manus, the platform converts the generated deck to Google Slides / PDF / PPTX
 
    ```bash
    uv run --with playwright playwright install chromium
+   ```
+
+5. **Verify the page count matches the slide count.** A doubled count means a screen-only margin/shadow is leaking into print — fix the `@media print` reset before shipping.
+
+   ```bash
+   # macOS
+   mdls -name kMDItemNumberOfPages deck.pdf
+   # Linux (poppler-utils)
+   pdfinfo deck.pdf | grep Pages
    ```

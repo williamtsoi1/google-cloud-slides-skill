@@ -161,7 +161,25 @@ body, .slide, .bg-green, .bg-blue, .bg-red, .dark-slide {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
+
+/* On-screen-only niceties go here so they NEVER affect pagination. A scrollable
+   browser preview usually wants slides centered and spaced — but a margin, gap,
+   border, or shadow on .slide adds to its printed box and pushes each slide onto
+   a second page (13 slides -> 26 pages). Keep them screen-scoped. */
+@media screen {
+  body { background: #e9eaed; }
+  .slide { margin: 24px auto; box-shadow: 0 2px 12px rgba(0, 0, 0, .15); }
+}
+
+/* Belt-and-suspenders: guarantee nothing contributes extra height in print, so
+   each .slide maps to exactly one page regardless of the screen styles above. */
+@media print {
+  body { background: #fff; }
+  .slide { margin: 0; box-shadow: none; }
+}
 ```
+
+**Keep `.slide` margin-free in print.** Any margin, gap, border, or shadow on `.slide` adds to its printed box and spills each slide onto a second page. If you add on-screen layout (centering, spacing, shadows), scope it under `@media screen` and zero it under `@media print` as shown above.
 
 **Image assets must be absolute.** During printing, Chrome resolves images relative to the HTML file's `file://` location, so reference the bundled brand assets (`templates/gradient_super_cloud_512_2x.png`, `templates/GC_Progress_Bar_Gradient_RGB.jpg`) by their **absolute path** (or copy them next to the deck) — otherwise they will be missing from the PDF.
 
