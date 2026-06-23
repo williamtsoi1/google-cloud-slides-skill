@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Is
 
-This is a **skill that ships as both a Claude Code plugin and a Gemini CLI extension** (not a runnable application). It teaches the agent how to generate Google Cloud-branded slide decks. It contains no executable code — only markdown instructions, CSS references, and image assets. The skill is invoked via the `slides` tool in `html` mode.
+This is a **skill that ships as both a Claude Code plugin and a Gemini CLI extension** (not a runnable application). It teaches the agent how to generate Google Cloud-branded slide decks. It is mostly markdown instructions, CSS references, and image assets, plus one bundled shell script for PDF export. On Manus the skill is invoked via the `slides` tool in `html` mode and the platform handles export. In CLI environments (Claude Code, Antigravity CLI, Gemini CLI) there is no built-in export, so the agent writes a single self-contained HTML deck (each slide a `.slide` section with the Print/PDF CSS) and runs `skills/google-cloud-slides/scripts/html_to_pdf.sh` to produce a multi-page PDF.
 
 Both platforms discover the same `skills/<name>/SKILL.md` convention, so a single shared `skills/` directory serves both. Each platform has its own manifest at a fixed location.
 
@@ -17,7 +17,8 @@ Both platforms discover the same `skills/<name>/SKILL.md` convention, so a singl
 - `skills/google-cloud-slides/references/LAYOUTS.md` — Catalog of all available slide layout types (cover, section dividers, content, charts, statements, images, maps, closing).
 - `skills/google-cloud-slides/references/CSS_SNIPPETS.md` — CSS variable definitions and class patterns for implementing the Google Cloud 2025 visual style in HTML.
 - `skills/google-cloud-slides/templates/` — Brand assets: `gradient_super_cloud_512_2x.png` (multicolour cloud logo), `GC_Progress_Bar_Gradient_RGB.jpg` (rainbow divider bar). Referenced relatively from `SKILL.md`, so they move with the skill.
-- `scripts/` — Currently empty; reserved for future tooling.
+- `skills/google-cloud-slides/scripts/html_to_pdf.sh` — PDF converter bundled with the skill (travels with the plugin/extension, like `templates/`). Renders a single-file HTML deck to a multi-page PDF (one slide per page) using system Chrome/Chromium headless, with a Playwright fallback. Used by CLI agents that lack Manus's built-in export.
+- `scripts/` — Repo-root scripts; reserved for future tooling. (The PDF converter lives inside the skill, not here, so it ships with the skill.)
 - `README.md` — Install instructions for both Claude Code and Gemini CLI.
 
 ## Key Brand Rules

@@ -68,3 +68,25 @@ For detailed descriptions of all available layouts, see [LAYOUTS.md](references/
 ### Example CSS Snippets
 
 For reference on how to implement the visual style in HTML/CSS, see [CSS_SNIPPETS.md](references/CSS_SNIPPETS.md).
+
+## Exporting to PDF (CLI environments)
+
+On Manus, the platform converts the generated deck to Google Slides / PDF / PPTX for you. When this skill runs from a **CLI agent** (Claude Code, Antigravity CLI, Gemini CLI) there is no built-in export — you must produce the PDF yourself using the bundled converter.
+
+1. **Author the deck as a single self-contained HTML file.** Put every slide in its own `.slide` section within one `.html` file, and include the **Print / PDF export** CSS from [CSS_SNIPPETS.md](references/CSS_SNIPPETS.md) (the `@page` size, the `.slide` page-break rules, and `print-color-adjust: exact`). This is what makes each slide map to exactly one PDF page with brand backgrounds intact.
+
+2. **Use absolute paths for the brand assets** (`templates/gradient_super_cloud_512_2x.png`, `templates/GC_Progress_Bar_Gradient_RGB.jpg`) so they load during printing, as noted in CSS_SNIPPETS.md.
+
+3. **Run the converter** from the skill directory:
+
+   ```bash
+   bash scripts/html_to_pdf.sh deck.html deck.pdf
+   ```
+
+   Resolve the script's absolute path from the skill location when invoking it. The script renders with system Chrome/Chromium (`--headless --print-to-pdf`) when available, and falls back to **Playwright** otherwise.
+
+4. **If neither is installed**, the script exits with a clear message. Install Google Chrome, or set up Playwright once:
+
+   ```bash
+   uv run --with playwright playwright install chromium
+   ```

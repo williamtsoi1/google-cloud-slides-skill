@@ -77,6 +77,22 @@ Cloud slide deck about our Q3 results"). The agent loads the `google-cloud-slide
 generates the presentation with the `slides` tool in `html` mode, applying the brand
 layouts, palette, and assets.
 
+### Exporting to PDF
+
+On Manus, the platform exports the deck to Google Slides / PDF / PPTX. In CLI agents (Claude
+Code, Antigravity CLI, Gemini CLI) there's no built-in export, so the skill ships a converter
+that renders a single-file HTML deck to a multi-page PDF (one slide per page):
+
+```
+bash skills/google-cloud-slides/scripts/html_to_pdf.sh deck.html deck.pdf
+```
+
+It uses your system Chrome/Chromium (headless) when available and falls back to Playwright
+otherwise. If neither is present, install Google Chrome or run
+`uv run --with playwright playwright install chromium`. The deck must include the
+**Print / PDF export** CSS documented in
+[CSS_SNIPPETS.md](skills/google-cloud-slides/references/CSS_SNIPPETS.md).
+
 ## Brand rules
 
 See [CLAUDE.md](CLAUDE.md) and [skills/google-cloud-slides/SKILL.md](skills/google-cloud-slides/SKILL.md)
