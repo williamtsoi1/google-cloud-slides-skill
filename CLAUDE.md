@@ -50,9 +50,18 @@ bash skills/google-cloud-slides/scripts/build_gslides.sh \
 - `skills/google-cloud-slides/scripts/build_gslides.sh` + `build_gslides.py` — Google Slides exporter bundled with the skill. The `.py` builds a `.pptx` from a JSON deck spec with `python-pptx` (one `render_*` function per layout type, brand constants/footer/section numbers enforced in code, brand images embedded from `templates/`); the `.sh` wrapper provisions `python-pptx` via `uv`. Offline — the user converts the `.pptx` to Slides in Drive.
 - `skills/google-cloud-slides/scripts/examples/sample_deck.json` — Reference deck spec exercising the core layouts; used for verification.
 - `scripts/` — Repo-root scripts; reserved for future tooling. (The PDF converter lives inside the skill, not here, so it ships with the skill.)
+- `.github/workflows/release.yml` — CI that creates a GitHub Release whenever a `v*` tag is pushed, using the matching `CHANGELOG.md` section as the notes (see Releasing below).
+- `CHANGELOG.md` — Human-readable, [Keep a Changelog](https://keepachangelog.com/)-formatted version history.
+- `RELEASING.md` — Canonical maintainer release checklist.
 - `README.md` — Install instructions for both Claude Code and Gemini CLI.
 
-The three manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `gemini-extension.json`) each carry their own `name`/`description`/`version` and must be kept in sync by hand when bumping a release — there is no shared source. `plugin.json` and `gemini-extension.json` are both at 1.1.0 (`marketplace.json` carries no version); update all of them together on the next bump. The `SKILL.md` `description` frontmatter, the `plugin.json` `description`, and the `marketplace.json` plugin `description` should also match.
+## Releasing
+
+**`RELEASING.md` is the canonical, step-by-step release checklist — follow it when cutting a release.** The essentials a future agent must not get wrong:
+
+- The version lives **by hand in two files that must match**: `.claude-plugin/plugin.json` and `gemini-extension.json` (`.claude-plugin/marketplace.json` carries no version). Keep the `description` fields across `plugin.json`, `marketplace.json`, and the `SKILL.md` frontmatter consistent too.
+- The flow is: update `CHANGELOG.md` (move `Unreleased` → `## [X.Y.Z] - DATE`, add a fresh empty `Unreleased`, update the compare links) → bump both manifests → `claude plugin validate .` → commit → `git tag -a vX.Y.Z` → `git push origin main --follow-tags`.
+- Tagging is the trigger: `.github/workflows/release.yml` creates the GitHub Release from the `## [X.Y.Z]` changelog section automatically. The tag **must** be `vX.Y.Z` and the changelog heading/date must match, or the notes fall back to auto-generated commit notes.
 
 ## Key Brand Rules
 

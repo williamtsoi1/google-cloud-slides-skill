@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `RELEASING.md` — canonical maintainer release checklist — and an automated
+  `.github/workflows/release.yml` that creates a GitHub Release from the matching
+  `CHANGELOG.md` section whenever a `v*` tag is pushed. README and CLAUDE.md point to
+  the release docs.
+
 ## [1.1.0] - 2026-06-24
 
 ### Added

@@ -118,3 +118,9 @@ Google Sans.
 
 See [CLAUDE.md](CLAUDE.md) and [skills/google-cloud-slides/SKILL.md](skills/google-cloud-slides/SKILL.md)
 for the full guidelines (color palette, footer requirements, layout catalog, asset usage).
+
+## Releasing
+
+See the [latest release and version history](https://github.com/williamtsoi1/google-cloud-slides-skill/releases)
+and [CHANGELOG.md](CHANGELOG.md) for what's new. Maintainers cutting a release should
+follow [RELEASING.md](RELEASING.md).
