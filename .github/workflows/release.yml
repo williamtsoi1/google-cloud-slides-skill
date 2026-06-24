@@ -1,0 +1,58 @@
+name: Release
+
+# Cut a GitHub Release whenever a version tag (v*) is pushed. Release notes are
+# pulled from the matching section of CHANGELOG.md; if no matching section exists,
+# GitHub's auto-generated notes are used as a fallback.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract changelog section for this tag
+        id: notes
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          # Print lines under "## [<version>]" up to the next "## [" heading.
+          awk -v ver="$version" '
+            $0 ~ "^## \\[" ver "\\]" { flag = 1; next }
+            flag && /^## \[/ { flag = 0 }
+            flag { print }
+          ' CHANGELOG.md > release_notes.md
+          # Trim leading/trailing blank lines.
+          sed -i -e '/./,$!d' release_notes.md
+          if [ -s release_notes.md ]; then
+            echo "have_notes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have_notes=false" >> "$GITHUB_OUTPUT"
+            echo "No CHANGELOG.md section found for $version; using auto-generated notes."
+          fi
+
+      - name: Create release (from CHANGELOG)
+        if: steps.notes.outputs.have_notes == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file release_notes.md \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Create release (auto-generated notes fallback)
+        if: steps.notes.outputs.have_notes == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes \
+            --repo "$GITHUB_REPOSITORY"
