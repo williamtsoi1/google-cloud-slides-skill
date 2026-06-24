@@ -1,7 +1,7 @@
 {
   "name": "google-cloud-slides",
   "description": "Create slide decks with the visual style of the Google Cloud 2025 presentation template. Use for: generating professional, branded presentations with specific Google Cloud layouts, colors, and typography.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": {
     "name": "William Tsoi"
   },

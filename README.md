@@ -93,6 +93,27 @@ otherwise. If neither is present, install Google Chrome or run
 **Print / PDF export** CSS documented in
 [CSS_SNIPPETS.md](skills/google-cloud-slides/references/CSS_SNIPPETS.md).
 
+### Exporting to Google Slides (editable)
+
+For a **native, editable Google Slides** deck instead of a PDF, the skill ships a builder that turns
+a small JSON deck spec into a Google Cloud–branded PowerPoint:
+
+```
+bash skills/google-cloud-slides/scripts/build_gslides.sh deck.json deck.pptx
+```
+
+Then upload `deck.pptx` to Google Drive and open it as Google Slides (**File → Save as Google
+Slides**) — Drive converts it to a native, editable deck. No authentication required. The JSON schema
+and supported slide types are documented in
+[GSLIDES_SPEC.md](skills/google-cloud-slides/references/GSLIDES_SPEC.md), with a full example in
+`skills/google-cloud-slides/scripts/examples/sample_deck.json`.
+
+The builder needs [`uv`](https://docs.astral.sh/uv/) (it auto-installs `python-pptx`) or a Python
+with `python-pptx` already installed. One caveat: editable Slides can't render Google Sans (it's
+proprietary and not in the Slides font library), so this path uses **Roboto**, its closest free
+relative; colors, layout, and the brand images stay exact. Use the PDF path when you need real
+Google Sans.
+
 ## Brand rules
 
 See [CLAUDE.md](CLAUDE.md) and [skills/google-cloud-slides/SKILL.md](skills/google-cloud-slides/SKILL.md)

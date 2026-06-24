@@ -100,3 +100,36 @@ On Manus, the platform converts the generated deck to Google Slides / PDF / PPTX
    # Linux (poppler-utils)
    pdfinfo deck.pdf | grep Pages
    ```
+
+## Exporting to Google Slides (editable, via PPTX)
+
+When the user wants a **native, editable Google Slides** deck (not a flat PDF), produce a
+PowerPoint (`.pptx`) with the bundled builder and let the user convert it in Drive. This path needs
+**no authentication** — the upload is a manual step.
+
+1. **Author a deck spec as JSON.** Describe each slide as an object keyed by `type` (cover, section,
+   bullets, stat, statement, two-tone, quote, thank-you, …). The full schema and supported slide
+   types are in [GSLIDES_SPEC.md](references/GSLIDES_SPEC.md); a complete example is in
+   `scripts/examples/sample_deck.json`. You only supply content — the builder enforces the footer on
+   every slide, zero-padded section numbers, the palette, and embeds the brand assets.
+
+2. **Build the `.pptx`** with the bundled script (resolve its absolute path from the skill location):
+
+   ```bash
+   bash scripts/build_gslides.sh deck.json deck.pptx
+   ```
+
+   It runs the Python builder with `uv` (auto-installs `python-pptx`) or a system `python3` that has
+   `python-pptx` importable.
+
+3. **Tell the user to convert it in Drive.** Upload `deck.pptx` to Google Drive, then either:
+   open it and choose **File → Save as Google Slides**, or turn on Drive Settings → "Convert uploads
+   to Google Docs editor format" before uploading. Drive converts the `.pptx` into a native, editable
+   Slides deck.
+
+> **Font note (important):** the `.pptx` is built in **Roboto**, not Google Sans. Google Sans is
+> proprietary, is not in the Google Slides font library, and Slides ignores fonts embedded in a
+> `.pptx` on import — so an *editable* Slides deck cannot render real Google Sans. Roboto is Google's
+> own typeface and the closest freely-available relative. Everything else (exact hex colors, layout,
+> the embedded cloud logo and rainbow bar, all text and shapes) stays brand-accurate and fully
+> editable. Use the PDF path above when you need real Google Sans rendering.

@@ -1,0 +1,71 @@
+{
+  "title": "Q3 Cloud Platform Review",
+  "footer": "Proprietary & Confidential",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Q3 Cloud Platform Review",
+      "subtitle": "Infrastructure & Data",
+      "date": "October 2025"
+    },
+    {
+      "type": "section",
+      "number": 1,
+      "title": "Where we are",
+      "color": "white"
+    },
+    {
+      "type": "section",
+      "number": 2,
+      "title": "Momentum this quarter",
+      "color": "blue",
+      "items": ["Adoption", "Reliability", "Cost"]
+    },
+    {
+      "type": "bullets",
+      "title": "Highlights",
+      "bullets": [
+        "Migrated three core services to managed runtimes",
+        "Cut p99 latency on the data plane by a third",
+        "Onboarded eight new internal teams",
+        "Standardized on a single deployment pipeline"
+      ]
+    },
+    {
+      "type": "stat",
+      "stat": "40%",
+      "label": "Lower infrastructure cost",
+      "support": "Driven by autoscaling and committed-use discounts across the fleet"
+    },
+    {
+      "type": "three-stat",
+      "title": "By the numbers",
+      "stats": [
+        {"stat": "99.98%", "label": "Availability"},
+        {"stat": "2.1M", "label": "Daily requests"},
+        {"stat": "8", "label": "Teams onboarded"}
+      ]
+    },
+    {
+      "type": "statement",
+      "highlight": "Reliability",
+      "text": "Reliability is the feature customers notice first",
+      "dark": false
+    },
+    {
+      "type": "two-tone",
+      "line1": "Built for scale.",
+      "line2": "Designed for teams.",
+      "dark": true
+    },
+    {
+      "type": "quote",
+      "quote": "The new platform let us ship in days what used to take a quarter.",
+      "attribution": "Internal platform team"
+    },
+    {
+      "type": "thank-you",
+      "title": "Thank you"
+    }
+  ]
+}
