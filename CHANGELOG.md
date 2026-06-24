@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-06-24
+
 ### Added
 - `RELEASING.md` — canonical maintainer release checklist — and an automated
   `.github/workflows/release.yml` that creates a GitHub Release from the matching
@@ -58,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   bundled brand assets (the multicolour Google Cloud cloud logo and the rainbow
   divider bar).
 
-[Unreleased]: https://github.com/williamtsoi1/google-cloud-slides-skill/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/williamtsoi1/google-cloud-slides-skill/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/williamtsoi1/google-cloud-slides-skill/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/williamtsoi1/google-cloud-slides-skill/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/williamtsoi1/google-cloud-slides-skill/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/williamtsoi1/google-cloud-slides-skill/releases/tag/v1.0.0
